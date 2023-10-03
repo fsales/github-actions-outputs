@@ -12,6 +12,11 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+
+    outputs:
+      output1: ${{ steps.step1.outputs.test }}
+      output2: ${{ steps.step2.outputs.test }}
+
     permissions:
       contents: read
       packages: write
@@ -26,6 +31,19 @@ jobs:
         server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
         settings-path: ${{ github.workspace }} # location for the settings.xml file
 
+    - id: step1
+      name: step1
+      run: echo "::set-output name=test::hello"
+    - id: step2
+      name: step2
+      run: echo "::set-output name=test::world"
+
     - name: Build with Maven
       run: mvn -B package --file pom.xml
+  job2:
+    runs-on: ubuntu-latest
+    # Wait from the job1 to be completed before starting job2
+    needs: build
+    steps:
+    - run: echo ${{needs.build.outputs.output1}} ${{needs.build.outputs.output2}}
 
