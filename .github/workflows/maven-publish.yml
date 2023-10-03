@@ -45,6 +45,8 @@ jobs:
 
     - name: Set Release version env variable
       id: set-release-version
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
       run: |
         APP_NEW_RELEASE_VERSION=$(./mvnw help:evaluate -Dexpression=project.version -q -DforceStdout)
         echo "::set-output new-version=test::world"
