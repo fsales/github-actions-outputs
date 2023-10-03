@@ -16,6 +16,7 @@ jobs:
     outputs:
       output1: ${{ steps.step1.outputs.test }}
       output2: ${{ steps.step2.outputs.test }}
+      output3: ${{ steps.set-release-version.outputs.new-version }}
 
     permissions:
       contents: read
@@ -24,6 +25,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Set up JDK 17
+      id: set-up-jdk
       uses: actions/setup-java@v3
       with:
         java-version: '17'
@@ -40,10 +42,22 @@ jobs:
 
     - name: Build with Maven
       run: mvn -B package --file pom.xml
+
+    - name: Set Release version env variable
+      id: set-release-version
+      run: |
+        APP_NEW_RELEASE_VERSION=$(./mvnw help:evaluate -Dexpression=project.version -q -DforceStdout)
+        echo "::set-output new-version=test::world"
+      
+    
   job2:
     runs-on: ubuntu-latest
     # Wait from the job1 to be completed before starting job2
     needs: build
     steps:
-    - run: echo ${{needs.build.outputs.output1}} ${{needs.build.outputs.output2}}
+      - id: print-hello-word
+        run: echo ${{needs.build.outputs.output1}} ${{needs.build.outputs.output2}}
+      
+      - id: print-new-version
+        run: echo ${{needs.build.outputs.output3}}
 
