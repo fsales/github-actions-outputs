@@ -16,6 +16,11 @@
 	<properties>
 		<java.version>17</java.version>
 	</properties>
+	<scm>
+		<connection>scm:git:git://github.com/fsales/github-actions-outputs.git</connection>
+		<developerConnection>scm:git:ssh://github.com:fsales/github-actions-outputs.git</developerConnection>
+		<url>http://github.com/fsales/github-actions-outputs/tree/main</url>
+	</scm>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
