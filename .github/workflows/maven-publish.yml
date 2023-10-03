@@ -60,7 +60,7 @@ jobs:
         GITHUB_TOKEN: ${{ github.token }}
       run: |
         mvn build-helper:parse-version versions:set -DnewVersion=\${parsedVersion.majorVersion}.\${parsedVersion.minorVersion}.\${parsedVersion.nextIncrementalVersion} versions:commit --file pom.xml
-        echo "::set-output new-version=test::world"
+        echo "new-version=teste" >> $GITHUB_OUTPUT
       
     
   job2:
