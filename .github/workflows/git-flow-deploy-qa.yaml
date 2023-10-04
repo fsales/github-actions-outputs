@@ -1,0 +1,28 @@
+name: Deploy (QA)
+
+on:
+  push:
+    branches:
+      - qa
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    name: deploy
+    runs-on: ubuntu-latest
+
+    defaults:
+        run:
+          shell: bash
+  
+    permissions:
+        contents: read
+        packages: write
+
+    steps:
+      - name: Deploy
+        run: |
+            echo "Deploy (QA)"
