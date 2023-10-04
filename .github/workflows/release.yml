@@ -5,9 +5,9 @@ on:
   #push:
   #  branches:
   #    - main
-  pull_request: # [master, next]
-    types:
-      - closed
+ # pull_request: # [master, next]
+  #  types:
+  #    - closed
  #release:
  #   types: [created]
 
