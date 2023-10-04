@@ -8,8 +8,8 @@ on:
   pull_request: # [master, next]
     types:
       - closed
-  release:
-    types: [created]
+ #release:
+ #   types: [created]
 
 jobs:
   test:
