@@ -104,6 +104,7 @@ jobs:
       - name: Echo Number New Release
         run: |
            echo "Relese number: ${{steps.set-release-version.outputs.new-release-version}}"
+
       - name: Push Action
         run: |
           git config  --local user.name 'github-actions'
@@ -118,8 +119,10 @@ jobs:
     needs: [ new-version ]
     
     steps:
-      #- name: "Check out the repo"
-      #  uses: "actions/checkout@v4"
+
+      - name: Echo Number New Release
+        run: |
+           echo "Relese number: ${{needs.new-version.outputs.new-release-version}}"
 
       - name: Create Release
         id: create-new-release
