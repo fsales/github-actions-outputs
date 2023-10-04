@@ -115,8 +115,8 @@ jobs:
     needs: [ new-version ]
     
     steps:
-      - name: "Check out the repo"
-        uses: "actions/checkout@v4"
+      #- name: "Check out the repo"
+      #  uses: "actions/checkout@v4"
 
       - name: Create Release
         id: create-new-release
