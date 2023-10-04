@@ -2,9 +2,9 @@
 name: Maven Package
 
 on:
-  #push:
-  #  branches:
-  #    - main
+  push:
+    branches:
+      - main2223
  # pull_request: # [master, next]
   #  types:
   #    - closed
