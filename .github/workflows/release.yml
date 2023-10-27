@@ -16,17 +16,17 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  github-context:
-    name: job-context
-    runs-on: ubuntu-latest
-    steps:
-      - name: Dump GitHub context
-        env:
-          GITHUB_CONTEXT: ${{ toJSON(github) }}
-        run: echo "$GITHUB_CONTEXT"
+  #github-context:
+  #  name: job-context
+  #  runs-on: ubuntu-latest
+  #  steps:
+  #    - name: Dump GitHub context
+  #      env:
+  #        GITHUB_CONTEXT: ${{ toJSON(github) }}
+  #      run: echo "$GITHUB_CONTEXT"
   
   test:
-    needs: [github-context]
+   # needs: [github-context]
 
     name: test
     runs-on: ubuntu-latest
